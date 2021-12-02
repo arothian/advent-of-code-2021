@@ -31,7 +31,7 @@ pub fn execute_puzzle() {
 
     let increasing_averages = depths.iter().zip(depths.iter().skip(1)).fold(0, increasing_depth_int);
 
-    println!("Day 1 Puzzle -- Part One:{}, Part Two: {}", number_increasing, increasing_averages);
+    println!("Day 1 Puzzle -- Part One: {}, Part Two: {}", number_increasing, increasing_averages);
 }
 
 fn increasing_depth_str(number_increasing: i32, depths: (&str, &str)) -> i32 {
