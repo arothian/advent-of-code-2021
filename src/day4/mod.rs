@@ -88,9 +88,7 @@ pub fn execute_puzzle() {
     }
 
     for number in numbers {
-        println!("Calling number {}", number);
         boards.retain(|board| { !board.is_bingo() });
-        println!("Boards left {}", boards.len());
         for board in &mut boards {
             board.mark_number(number);
             // if board.is_bingo(){
