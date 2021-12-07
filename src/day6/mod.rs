@@ -1,4 +1,4 @@
-use std::{fs, fmt};
+use std::{fs};
 
 #[derive(Copy, Clone, Hash, PartialEq, Eq)]
 struct Lanternfish {
@@ -24,12 +24,6 @@ impl Lanternfish {
     }
 }
 
-impl fmt::Display for Lanternfish {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Lanternfish Colony ({})", self.colony[0])
-    }
-}
-
 pub fn execute_puzzle() {
     let file_result = fs::read_to_string("src/day6/input.txt");
 
@@ -37,7 +31,6 @@ pub fn execute_puzzle() {
         Ok(input) => input,
         Err(error) => panic!("Unable to read puzzle input: {}", error),
     };
-
 
     let mut colony: Lanternfish = puzzle_input.split(',')
         .fold(Lanternfish { colony: [0; 9] },|mut colony, number_str | {
