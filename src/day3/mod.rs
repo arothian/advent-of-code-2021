@@ -1,5 +1,3 @@
-use std::{fs};
-
 struct PowerLevel {
     number_bits_on: Vec<i32>,
     reading_count: i32
@@ -91,12 +89,7 @@ impl LifeSupport {
 }
 
 pub fn execute_puzzle() {
-    let file_result = fs::read_to_string("src/day3/input.txt");
-
-    let puzzle_input = match file_result {
-        Ok(input) => input,
-        Err(error) => panic!("Unable to read puzzle input: {}", error),
-    };
+    let puzzle_input = include_str!("input.txt");
 
     let lines = puzzle_input.lines();
     let readings:Vec<u32> = lines.map(|reading| {
@@ -104,7 +97,7 @@ pub fn execute_puzzle() {
     }).collect();
 
     let power_level = PowerLevel::process_readings(readings.clone());
-    let life_support = LifeSupport::new(readings.clone());
+    let life_support = LifeSupport::new(readings);
 
     println!("Day 3 Puzzle -- power: {}, life support: {}", power_level.power_consumption(), life_support.life_support_rating());
 }

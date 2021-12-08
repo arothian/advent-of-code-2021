@@ -1,5 +1,3 @@
-use std::{fs};
-
 #[derive(Copy, Clone, Hash, PartialEq, Eq)]
 struct Lanternfish {
     colony: [u64; 9]
@@ -25,12 +23,7 @@ impl Lanternfish {
 }
 
 pub fn execute_puzzle() {
-    let file_result = fs::read_to_string("src/day6/input.txt");
-
-    let puzzle_input = match file_result {
-        Ok(input) => input,
-        Err(error) => panic!("Unable to read puzzle input: {}", error),
-    };
+    let puzzle_input = include_str!("input.txt");
 
     let mut colony: Lanternfish = puzzle_input.split(',')
         .fold(Lanternfish { colony: [0; 9] },|mut colony, number_str | {

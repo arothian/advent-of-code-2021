@@ -1,5 +1,3 @@
-use std::{fs};
-
 #[derive(Clone, Hash, PartialEq, Eq)]
 struct CrabSubs {
     subs: Vec<i32>
@@ -28,12 +26,7 @@ impl CrabSubs {
 }
 
 pub fn execute_puzzle() {
-    let file_result = fs::read_to_string("src/day7/input.txt");
-
-    let puzzle_input = match file_result {
-        Ok(input) => input,
-        Err(error) => panic!("Unable to read puzzle input: {}", error),
-    };
+    let puzzle_input = include_str!("input.txt");
 
     let mut subs: CrabSubs = puzzle_input.split(',')
         .fold(CrabSubs { subs: vec![] },|mut subs, number_str | {

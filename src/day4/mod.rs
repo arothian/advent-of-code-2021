@@ -1,5 +1,3 @@
-use std::{fs};
-
 struct BingoBoard {
     numbers: [i32; 25],
     marked_numbers: u32 // 25 bits,  0b00000000000000000000 for each number position
@@ -7,9 +5,8 @@ struct BingoBoard {
 
 impl BingoBoard {
     fn mark_number(&mut self, number: i32) {
-        let number_index = self.numbers.iter().position(|board_number| *board_number == number);
-        if number_index.is_some() {
-            self.mark_number_for_index(number_index.unwrap().try_into().unwrap());
+        if let Some(number_index) = self.numbers.iter().position(|board_number| *board_number == number) {
+            self.mark_number_for_index(number_index.try_into().unwrap());
         }
     }
 
@@ -61,13 +58,7 @@ impl BingoBoard {
 }
 
 pub fn execute_puzzle() {
-    let file_result = fs::read_to_string("src/day4/input.txt");
-
-    let puzzle_input = match file_result {
-        Ok(input) => input,
-        Err(error) => panic!("Unable to read puzzle input: {}", error),
-    };
-
+    let puzzle_input = include_str!("input.txt");
     let mut lines = puzzle_input.lines();
 
     let mut boards: Vec<BingoBoard> = Vec::new();

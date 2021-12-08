@@ -1,6 +1,3 @@
-use std::fs;
-
-
 struct Submarine {
     horizontal: i32,
     depth: i32,
@@ -32,12 +29,7 @@ impl Submarine {
 }
 
 pub fn execute_puzzle() {
-    let file_result = fs::read_to_string("src/day2/input.txt");
-
-    let puzzle_input = match file_result {
-        Ok(input) => input,
-        Err(error) => panic!("Unable to read puzzle input: {}", error),
-    };
+    let puzzle_input = include_str!("input.txt");
 
     let lines = puzzle_input.lines();
 

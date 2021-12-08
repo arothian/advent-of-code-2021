@@ -1,4 +1,4 @@
-use std::{fs, collections::HashMap, fmt, cmp};
+use std::{collections::HashMap, fmt, cmp};
 
 #[derive(Copy, Clone, Hash, PartialEq, Eq)]
 struct Coordinate {
@@ -70,13 +70,7 @@ impl fmt::Display for Coordinate {
 }
 
 pub fn execute_puzzle() {
-    let file_result = fs::read_to_string("src/day5/input.txt");
-
-    let puzzle_input = match file_result {
-        Ok(input) => input,
-        Err(error) => panic!("Unable to read puzzle input: {}", error),
-    };
-
+    let puzzle_input = include_str!("input.txt");
     let lines = puzzle_input.lines();
 
     let mut map: HashMap<Coordinate, i32> = HashMap::new();
