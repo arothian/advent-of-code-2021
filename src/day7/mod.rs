@@ -25,8 +25,8 @@ impl CrabSubs {
     }
 }
 
-pub fn execute_puzzle() {
-    let puzzle_input = include_str!("input.txt");
+fn execute_puzzle_with(puzzle_input: &str) -> i32 {
+    // let puzzle_input = include_str!(input_file);
 
     let mut subs: CrabSubs = puzzle_input.split(',')
         .fold(CrabSubs { subs: vec![] },|mut subs, number_str | {
@@ -37,4 +37,19 @@ pub fn execute_puzzle() {
     let power_consumed = subs.align();
 
     println!("Day 7 Puzzle -- {}", power_consumed);
+    power_consumed
+}
+
+pub fn execute_puzzle() {
+    execute_puzzle_with(include_str!("input.txt"));
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_puzzle() {
+        assert_eq!(execute_puzzle_with(include_str!("test.txt")), 168);
+    }
 }
